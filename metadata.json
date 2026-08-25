@@ -1,0 +1,6 @@
+{
+  "name": "Tresval Clinic OS",
+  "description": "Sistema avanzado de triaje clínico, odontograma interactivo, historiales médicos y facturación para redes de clínicas especializadas.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
