@@ -380,8 +380,8 @@ export const translations: TranslationsDict = {
     en: 'Discharged',
   },
   'patients.btn.new_patient': {
-    es: '+ Registrar Nuevo Paciente',
-    en: '+ Register New Patient',
+    es: 'Registrar Nuevo Paciente',
+    en: 'Register New Patient',
   },
   'patients.col.patient': {
     es: 'Paciente & MRN',
@@ -434,8 +434,8 @@ export const translations: TranslationsDict = {
     en: 'Billing & Plans',
   },
   'detail.btn.new_soap': {
-    es: '+ Nueva Nota SOAP',
-    en: '+ New SOAP Note',
+    es: 'Nueva Nota SOAP',
+    en: 'New SOAP Note',
   },
   'detail.status.active': {
     es: 'Activo',
@@ -539,6 +539,14 @@ export const translations: TranslationsDict = {
     es: 'Cartografía dental interactiva, marcado de superficies y presupuesto clínico automatizado.',
     en: 'Interactive dental charting, surface marking, and automated treatment estimates.',
   },
+  'odontogram.patient_select': {
+    es: 'Paciente Seleccionado',
+    en: 'Selected Patient',
+  },
+  'odontogram.arch.title': {
+    es: 'Arcada Dental FDI',
+    en: 'FDI Dental Arch',
+  },
   'odontogram.arch.both': {
     es: 'Arcada Completa',
     en: 'Full Mouth',
@@ -551,25 +559,97 @@ export const translations: TranslationsDict = {
     es: 'Arcada Inferior (Mandibular)',
     en: 'Lower Arch (Mandibular)',
   },
+  'odontogram.midline': {
+    es: 'Línea Media',
+    en: 'Midline',
+  },
   'odontogram.tools.title': {
     es: 'Herramientas de Diagnóstico Dental',
     en: 'Dental Diagnostic Tools',
   },
   'odontogram.quad.1': {
-    es: 'Cuadrante 1 (Superior Derecho)',
+    es: 'Cuadrante 1 (Sup. Der.)',
     en: 'Quadrant 1 (Upper Right)',
   },
   'odontogram.quad.2': {
-    es: 'Cuadrante 2 (Superior Izquierdo)',
+    es: 'Cuadrante 2 (Sup. Izq.)',
     en: 'Quadrant 2 (Upper Left)',
   },
   'odontogram.quad.3': {
-    es: 'Cuadrante 3 (Inferior Izquierdo)',
+    es: 'Cuadrante 3 (Inf. Izq.)',
     en: 'Quadrant 3 (Lower Left)',
   },
   'odontogram.quad.4': {
-    es: 'Cuadrante 4 (Inferior Derecho)',
+    es: 'Cuadrante 4 (Inf. Der.)',
     en: 'Quadrant 4 (Lower Right)',
+  },
+  'odontogram.plan_in_progress': {
+    es: 'Plan de Tratamiento en Curso',
+    en: 'Treatment Plan in Progress',
+  },
+  'odontogram.findings_count': {
+    es: 'hallazgos clínicos diagnosticados',
+    en: 'diagnosed clinical findings',
+  },
+  'odontogram.view_billing': {
+    es: 'Ver Presupuesto y Facturación',
+    en: 'View Estimate & Billing',
+  },
+  'odontogram.diagnosis_label': {
+    es: 'Diagnóstico Dental',
+    en: 'Dental Diagnosis',
+  },
+  'odontogram.surfaces_label': {
+    es: 'Superficies Afectadas',
+    en: 'Affected Surfaces',
+  },
+  'odontogram.click_toggle': {
+    es: 'Clic para alternar',
+    en: 'Click to toggle',
+  },
+  'odontogram.surf.m': {
+    es: 'Mesial',
+    en: 'Mesial',
+  },
+  'odontogram.surf.o': {
+    es: 'Oclusal',
+    en: 'Occlusal',
+  },
+  'odontogram.surf.d': {
+    es: 'Distal',
+    en: 'Distal',
+  },
+  'odontogram.surf.v': {
+    es: 'Vestib.',
+    en: 'Buccal',
+  },
+  'odontogram.surf.l': {
+    es: 'Lingual',
+    en: 'Lingual',
+  },
+  'odontogram.perio_probing': {
+    es: 'Sondaje Periodontal',
+    en: 'Periodontal Probing',
+  },
+  'odontogram.notes_label': {
+    es: 'Notas Clínicas de la Pieza',
+    en: 'Tooth Clinical Notes',
+  },
+  'odontogram.notes_placeholder': {
+    es: 'Escribe hallazgos adicionales, movilidad o pronóstico...',
+    en: 'Enter additional findings, mobility, or prognosis...',
+  },
+  'odontogram.btn.add_to_plan': {
+    es: 'Agregar al Plan de Tratamiento',
+    en: 'Add to Treatment Plan',
+  },
+  'odontogram.auto_calc_hint': {
+    es: 'Cálculo automático de copagos y coberturas según aseguradora',
+    en: 'Automatic calculation of copays and insurance coverage',
+  },
+  'odontogram.toast.view_plan': {
+    es: 'Ver Plan',
+    en: 'View Plan',
   },
   'odontogram.inspector.title': {
     es: 'Explorador de Pieza',
@@ -636,6 +716,44 @@ export const translations: TranslationsDict = {
     en: 'Issue Invoice / View Estimate',
   },
 
+  // Odontogram Conditions (both namespaces supported)
+  'odontogram.cond.healthy': {
+    es: 'Sano / Normal',
+    en: 'Sound / Healthy',
+  },
+  'odontogram.cond.caries': {
+    es: 'Caries Activa',
+    en: 'Active Cavity',
+  },
+  'odontogram.cond.endodontic': {
+    es: 'Endodoncia / Conducto',
+    en: 'Root Canal',
+  },
+  'odontogram.cond.implant': {
+    es: 'Implante Dental',
+    en: 'Dental Implant',
+  },
+  'odontogram.cond.crown': {
+    es: 'Corona / Zirconio',
+    en: 'Crown / Zirconia',
+  },
+  'odontogram.cond.extraction': {
+    es: 'Exodoncia Requerida',
+    en: 'Extraction Needed',
+  },
+  'odontogram.cond.missing': {
+    es: 'Diente Ausente',
+    en: 'Missing Tooth',
+  },
+  'odontogram.cond.veneer': {
+    es: 'Carilla E.max',
+    en: 'E.max Veneer',
+  },
+  'odontogram.cond.sealant': {
+    es: 'Sellador Dental',
+    en: 'Pit Sealant',
+  },
+
   // Conditions
   'cond.healthy': {
     es: 'Sano / Normal',
@@ -674,7 +792,7 @@ export const translations: TranslationsDict = {
     en: 'Pit & Fissure Sealant',
   },
 
-  // Appointments Schedule View
+  // Appointments Schedule / Calendar View
   'schedule.title': {
     es: 'Calendario de Citas & Ocupación de Sillones',
     en: 'Appointment Calendar & Chair Occupancy',
@@ -684,8 +802,8 @@ export const translations: TranslationsDict = {
     en: 'Intelligent procedure scheduling, chair time management, and clinical resource tracking.',
   },
   'schedule.btn.new': {
-    es: '+ Programar Nueva Cita',
-    en: '+ Schedule New Appointment',
+    es: 'Programar Nueva Cita',
+    en: 'Schedule New Appointment',
   },
   'schedule.filter.all_doctors': {
     es: 'Todos los Doctores',
@@ -744,6 +862,326 @@ export const translations: TranslationsDict = {
     en: 'Use the button above to schedule a new procedure or select a different date.',
   },
 
+  // Calendar View aliases
+  'calendar.title': {
+    es: 'Agenda Quirúrgica y Consultas Clínicas',
+    en: 'Surgical Calendar & Clinical Appointments',
+  },
+  'calendar.desc': {
+    es: 'Gestión de sillones dentales, quirófanos y programación de facultativos.',
+    en: 'Management of dental chairs, operating rooms, and doctor scheduling.',
+  },
+  'calendar.btn.new_appointment': {
+    es: 'Nueva Cita Médica',
+    en: 'New Medical Appointment',
+  },
+  'calendar.today': {
+    es: 'Hoy',
+    en: 'Today',
+  },
+  'calendar.doctor_filter': {
+    es: 'Filtrar por Facultativo:',
+    en: 'Filter by Practitioner:',
+  },
+  'calendar.all_staff': {
+    es: 'Todo el Equipo Médico',
+    en: 'All Medical Staff',
+  },
+  'calendar.specialty_filter': {
+    es: 'Especialidad:',
+    en: 'Specialty:',
+  },
+  'calendar.all_specialties': {
+    es: 'Todas las Especialidades',
+    en: 'All Specialties',
+  },
+  'calendar.agenda_title': {
+    es: 'Citas Programadas',
+    en: 'Scheduled Appointments',
+  },
+  'calendar.procedures_count': {
+    es: 'actos médicos programados',
+    en: 'scheduled medical procedures',
+  },
+  'calendar.standard_intervals': {
+    es: 'Intervalos estándar de 15/30 min',
+    en: 'Standard 15/30 min intervals',
+  },
+  'calendar.no_appointments': {
+    es: 'Sin citas programadas',
+    en: 'No appointments scheduled',
+  },
+  'calendar.no_appointments_desc': {
+    es: 'No hay procedimientos agendados para este día con los filtros seleccionados.',
+    en: 'No procedures scheduled for this day with the selected filters.',
+  },
+  'calendar.card.patient': {
+    es: 'Paciente:',
+    en: 'Patient:',
+  },
+  'calendar.card.doctor': {
+    es: 'Doctor / Cirujano:',
+    en: 'Doctor / Surgeon:',
+  },
+  'calendar.card.location': {
+    es: 'Ubicación / Box:',
+    en: 'Location / Chair:',
+  },
+  'calendar.card.notes': {
+    es: 'Indicaciones:',
+    en: 'Instructions:',
+  },
+  'calendar.btn.mark_waiting': {
+    es: 'Marcar en Espera',
+    en: 'Mark Waiting',
+  },
+  'calendar.btn.move_chair': {
+    es: 'Pasar a Sillón',
+    en: 'Move to Chair',
+  },
+  'calendar.btn.finish_treatment': {
+    es: 'Finalizar Atención',
+    en: 'Complete Care',
+  },
+  'calendar.status.in_chair': {
+    es: 'En Sillón',
+    en: 'In Chair',
+  },
+  'calendar.status.waiting': {
+    es: 'En Espera',
+    en: 'Waiting',
+  },
+  'calendar.status.completed': {
+    es: 'Completado',
+    en: 'Completed',
+  },
+  'calendar.status.confirmed': {
+    es: 'Confirmado',
+    en: 'Confirmed',
+  },
+  'calendar.status.finished_label': {
+    es: 'Atendido',
+    en: 'Completed',
+  },
+
+  // Patients View & Patient Details
+  'patient.back': {
+    es: '← Volver al Directorio de Pacientes',
+    en: '← Back to Patients Directory',
+  },
+  'patient.btn.odontogram': {
+    es: 'Odontograma FDI',
+    en: 'FDI Dental Chart',
+  },
+  'patient.btn.schedule': {
+    es: 'Agendar Cita',
+    en: 'Schedule Appointment',
+  },
+  'patient.btn.billing': {
+    es: 'Facturación & Planes',
+    en: 'Billing & Plans',
+  },
+  'patient.btn.new_soap': {
+    es: 'Nueva Nota SOAP',
+    en: 'New SOAP Note',
+  },
+  'patient.detail.age': {
+    es: 'Edad',
+    en: 'Age',
+  },
+  'patient.detail.gender': {
+    es: 'Sexo',
+    en: 'Sex',
+  },
+  'patient.detail.blood_group': {
+    es: 'Grupo Sanguíneo',
+    en: 'Blood Group',
+  },
+  'patient.detail.dni': {
+    es: 'DNI / Pasaporte',
+    en: 'ID / Passport',
+  },
+  'patient.detail.allergy': {
+    es: 'Alergias Conocidas',
+    en: 'Known Allergies',
+  },
+  'patient.insurance.title': {
+    es: 'Cobertura Aseguradora',
+    en: 'Insurance Coverage',
+  },
+  'patient.insurance.active': {
+    es: 'Póliza Activa',
+    en: 'Active Policy',
+  },
+  'patient.insurance.policy': {
+    es: 'Póliza Nº',
+    en: 'Policy No.',
+  },
+  'patient.insurance.coverage': {
+    es: 'Cobertura Odonto/Médica',
+    en: 'Dental/Medical Coverage',
+  },
+  'patient.insurance.emergency_contact': {
+    es: 'Contacto de Emergencia',
+    en: 'Emergency Contact',
+  },
+  'patient.timeline.title': {
+    es: 'Línea de Tiempo Clínica',
+    en: 'Clinical Timeline',
+  },
+  'patient.timeline.tab.all': {
+    es: 'Todos los Eventos',
+    en: 'All Events',
+  },
+  'patient.timeline.tab.triage': {
+    es: 'Triajes & Urgencias',
+    en: 'Triage & Emergencies',
+  },
+  'patient.timeline.tab.surgery': {
+    es: 'Cirugías',
+    en: 'Surgeries',
+  },
+  'patient.timeline.tab.imaging': {
+    es: 'Radiología',
+    en: 'Imaging',
+  },
+  'patient.timeline.tab.dental': {
+    es: 'Odontología',
+    en: 'Dental',
+  },
+  'patient.soap.title': {
+    es: 'Evolución Clínica SOAP',
+    en: 'SOAP Clinical Evolution',
+  },
+  'patient.soap.signed': {
+    es: 'Firmado por',
+    en: 'Signed by',
+  },
+  'patient.soap.s': {
+    es: 'Subjetivo (S):',
+    en: 'Subjective (S):',
+  },
+  'patient.soap.o': {
+    es: 'Objetivo (O):',
+    en: 'Objective (O):',
+  },
+  'patient.soap.a': {
+    es: 'Evaluación (A):',
+    en: 'Assessment (A):',
+  },
+  'patient.soap.p': {
+    es: 'Plan (P):',
+    en: 'Plan (P):',
+  },
+  'patient.imaging.attached': {
+    es: 'Estudios Radiológicos Adjuntos',
+    en: 'Attached Imaging Studies',
+  },
+  'patient.imaging.click_view': {
+    es: 'Clic para inspeccionar CBCT / Ortopantomografía',
+    en: 'Click to inspect CBCT / Panoramic X-ray',
+  },
+  'patient.rx.title': {
+    es: 'Pautas Farmacológicas Activas',
+    en: 'Active Drug Prescriptions',
+  },
+  'patient.viewer.title': {
+    es: 'Visor Radiológico Digital DICOM',
+    en: 'DICOM Digital Radiology Viewer',
+  },
+  'patient.viewer.specs': {
+    es: 'Especificaciones Técnicas',
+    en: 'Technical Specifications',
+  },
+  'patient.viewer.close': {
+    es: 'Cerrar Visor',
+    en: 'Close Viewer',
+  },
+
+  // Patients Directory aliases
+  'patients.btn.new': {
+    es: 'Registrar Nuevo Paciente',
+    en: 'Register New Patient',
+  },
+  'patients.search.placeholder': {
+    es: 'Buscar paciente por nombre, DNI, MRN...',
+    en: 'Search patient by name, ID, MRN...',
+  },
+  'patients.filter.status': {
+    es: 'Estado Clínico:',
+    en: 'Clinical Status:',
+  },
+  'patients.filter.all': {
+    es: 'Todos los Pacientes',
+    en: 'All Patients',
+  },
+  'patients.filter.triage_queue': {
+    es: 'En Cola de Triaje',
+    en: 'In Triage Queue',
+  },
+  'patients.card.id_label': {
+    es: 'DNI / NIE:',
+    en: 'ID / Passport:',
+  },
+  'patients.card.phone_label': {
+    es: 'Teléfono:',
+    en: 'Phone:',
+  },
+  'patients.card.insurance_label': {
+    es: 'Aseguradora:',
+    en: 'Insurance:',
+  },
+  'patients.card.odontogram': {
+    es: 'Odontograma FDI',
+    en: 'FDI Dental Chart',
+  },
+  'patients.card.view_dossier': {
+    es: 'Ver Expediente',
+    en: 'View Dossier',
+  },
+
+  // SOAP Modal aliases
+  'soap_modal.title': {
+    es: 'Nueva Nota Clínica SOAP & Evolución',
+    en: 'New SOAP Clinical Evolution Note',
+  },
+  'soap_modal.ai_title': {
+    es: 'Estructurador Clínico SOAP Asistido por IA',
+    en: 'AI-Assisted SOAP Clinical Structurer',
+  },
+  'soap_modal.structuring': {
+    es: 'Estructurando nota clínica con IA...',
+    en: 'Structuring clinical note with AI...',
+  },
+  'soap_modal.btn_structure': {
+    es: 'Estructurar en Formato SOAP con IA',
+    en: 'Structure into SOAP with AI',
+  },
+  'soap_modal.raw_notes_label': {
+    es: 'Dictado o Anotaciones Rápidas del Facultativo:',
+    en: 'Doctor Quick Dictation / Rough Notes:',
+  },
+  'soap_modal.raw_placeholder': {
+    es: 'Escribe los hallazgos rápidos para que la IA los ordene en Subjetivo, Objetivo, Análisis y Plan...',
+    en: 'Type rough findings for AI to structure into Subjective, Objective, Assessment and Plan...',
+  },
+  'soap_modal.consult_title': {
+    es: 'Título de la Consulta:',
+    en: 'Consultation Title:',
+  },
+  'soap_modal.act_type': {
+    es: 'Tipo de Acto Clínico:',
+    en: 'Clinical Act Type:',
+  },
+  'soap_modal.cancel': {
+    es: 'Cancelar',
+    en: 'Cancel',
+  },
+  'soap_modal.save': {
+    es: 'Firmar y Guardar en Historial',
+    en: 'Sign & Save to Medical Record',
+  },
+
   // Billing & Treatments View
   'billing.title': {
     es: 'Facturación Médica, Coberturas & Presupuestos',
@@ -761,6 +1199,10 @@ export const translations: TranslationsDict = {
     es: 'Planes & Presupuestos',
     en: 'Treatment Plans & Estimates',
   },
+  'billing.tab.treatment_plans': {
+    es: 'Presupuestos & Planes de Tratamiento',
+    en: 'Estimates & Treatment Plans',
+  },
   'billing.kpi.total_billed': {
     es: 'Facturación Total',
     en: 'Total Invoiced',
@@ -776,6 +1218,42 @@ export const translations: TranslationsDict = {
   'billing.kpi.pending_balance': {
     es: 'Saldo Pendiente',
     en: 'Balance Due',
+  },
+  'billing.kpi.copay': {
+    es: 'Copago Pacientes',
+    en: 'Patient Copay',
+  },
+  'billing.kpi.copay_sub': {
+    es: 'Liquidado este mes',
+    en: 'Settled this month',
+  },
+  'billing.kpi.insurance': {
+    es: 'Reclamaciones Aseguradoras',
+    en: 'Insurer Claims',
+  },
+  'billing.kpi.insurance_sub': {
+    es: 'Pendiente de liquidación',
+    en: 'Pending settlement',
+  },
+  'billing.kpi.collected': {
+    es: 'Cobrado Total',
+    en: 'Total Collected',
+  },
+  'billing.kpi.collected_sub': {
+    es: 'Ingresos netos en clínica',
+    en: 'Net clinic revenue',
+  },
+  'billing.kpi.pending': {
+    es: 'Pendiente de Cobro',
+    en: 'Outstanding Balance',
+  },
+  'billing.kpi.pending_sub': {
+    es: 'Cuotas y copagos pendientes',
+    en: 'Pending installments & copays',
+  },
+  'billing.invoices.title': {
+    es: 'Registro de Facturación & Cobros',
+    en: 'Invoicing & Claims Register',
   },
   'billing.filter.all': {
     es: 'Todas',
@@ -801,9 +1279,185 @@ export const translations: TranslationsDict = {
     es: 'Pendiente',
     en: 'Pending',
   },
+  'billing.status.partial': {
+    es: 'Pago Parcial',
+    en: 'Partial Payment',
+  },
   'billing.status.partially_paid': {
     es: 'Pago Parcial',
     en: 'Partial Payment',
+  },
+  'billing.item.copay_total': {
+    es: 'Copago Total',
+    en: 'Total Copay',
+  },
+  'billing.item.remains': {
+    es: 'Restante',
+    en: 'Remains',
+  },
+  'billing.item.settled': {
+    es: 'Cobrado',
+    en: 'Settled',
+  },
+  'billing.item.procedures_included': {
+    es: 'Procedimientos incluidos:',
+    en: 'Procedures included:',
+  },
+  'billing.item.insurance_coverage': {
+    es: 'Cobertura aseguradora:',
+    en: 'Insurance coverage:',
+  },
+  'billing.item.date': {
+    es: 'Fecha Emisión:',
+    en: 'Issue Date:',
+  },
+  'billing.detail.title': {
+    es: 'Detalle del Presupuesto & Facturación',
+    en: 'Estimate & Billing Breakdown',
+  },
+  'billing.detail.btn_print': {
+    es: 'Imprimir Factura',
+    en: 'Print Invoice',
+  },
+  'billing.detail.patient': {
+    es: 'Paciente:',
+    en: 'Patient:',
+  },
+  'billing.detail.campus': {
+    es: 'Sede Clínica:',
+    en: 'Clinic Campus:',
+  },
+  'billing.detail.claim_id': {
+    es: 'ID Reclamación:',
+    en: 'Claim ID:',
+  },
+  'billing.detail.procedures_breakdown': {
+    es: 'Desglose de Actos Médicos',
+    en: 'Medical Acts Breakdown',
+  },
+  'billing.detail.insurance_cover': {
+    es: 'Cobertura Póliza:',
+    en: 'Policy Coverage:',
+  },
+  'billing.calc.subtotal': {
+    es: 'Subtotal Bruto:',
+    en: 'Gross Subtotal:',
+  },
+  'billing.calc.insurance_discount': {
+    es: 'Cobertura / Descuento Seguro:',
+    en: 'Insurance Coverage / Discount:',
+  },
+  'billing.calc.vat': {
+    es: 'IVA Aplicado:',
+    en: 'Applied VAT:',
+  },
+  'billing.calc.tax_exempt': {
+    es: 'Exento (Art. 20 Ley Sanidad)',
+    en: 'Exempt (Healthcare Law Art. 20)',
+  },
+  'billing.calc.total_copay': {
+    es: 'Total Copago Paciente:',
+    en: 'Total Patient Copay:',
+  },
+  'billing.calc.paid_amount': {
+    es: 'Importe Ya Abonado:',
+    en: 'Amount Already Paid:',
+  },
+  'billing.calc.balance_due': {
+    es: 'Saldo Pendiente:',
+    en: 'Balance Due:',
+  },
+  'billing.ai.title': {
+    es: 'Explicador de Facturación con IA',
+    en: 'AI Billing & Copay Explainer',
+  },
+  'billing.pos.title': {
+    es: 'Terminal de Cobro TPV Clínico',
+    en: 'Clinical POS Payment Terminal',
+  },
+  'billing.pos.amount_label': {
+    es: 'Importe a Cobrar (€):',
+    en: 'Amount to Charge (€):',
+  },
+  'billing.pos.method_label': {
+    es: 'Método de Pago:',
+    en: 'Payment Method:',
+  },
+  'billing.pos.card': {
+    es: 'Tarjeta Débito/Crédito',
+    en: 'Debit/Credit Card',
+  },
+  'billing.pos.wire': {
+    es: 'Transferencia / Bizum',
+    en: 'Wire / Transfer',
+  },
+  'billing.pos.installments': {
+    es: 'Financiación / Cuotas',
+    en: 'Financing / Installments',
+  },
+  'billing.pos.cash': {
+    es: 'Efectivo en Caja',
+    en: 'Cash at Counter',
+  },
+  'billing.pos.process_btn': {
+    es: 'Registrar y Cobrar',
+    en: 'Process & Collect',
+  },
+  'billing.pos.fully_paid': {
+    es: 'Factura Totalmente Cobrada',
+    en: 'Invoice Fully Paid',
+  },
+  'billing.modal.official_title': {
+    es: 'Factura Oficial Clínica & Desglose',
+    en: 'Official Clinic Invoice & Breakdown',
+  },
+  'billing.modal.patient_info': {
+    es: 'Datos del Paciente',
+    en: 'Patient Information',
+  },
+  'billing.modal.insurance_coverage': {
+    es: 'Póliza de Aseguradora',
+    en: 'Insurance Policy',
+  },
+  'billing.modal.claim_id': {
+    es: 'Nº Liquidación:',
+    en: 'Claim ID:',
+  },
+  'billing.modal.th.code': {
+    es: 'Código CDT',
+    en: 'CDT Code',
+  },
+  'billing.modal.th.desc': {
+    es: 'Descripción',
+    en: 'Description',
+  },
+  'billing.modal.th.price': {
+    es: 'Precio Base',
+    en: 'Base Price',
+  },
+  'billing.modal.th.insurance': {
+    es: 'Aseguradora',
+    en: 'Insurer',
+  },
+  'billing.modal.th.copay': {
+    es: 'Copago',
+    en: 'Copay',
+  },
+  'billing.modal.fiscal_stamp': {
+    es: 'Timbre Fiscal Certificado',
+    en: 'Certified Tax Stamp',
+  },
+  'billing.modal.total_liquidated': {
+    es: 'Total Liquidado',
+    en: 'Total Liquidated',
+  },
+  'billing.modal.qr_verification': {
+    es: 'Verificación QR Fiscal',
+    en: 'Tax QR Verification',
+  },
+  'billing.modal.print_doc': {
+    es: 'Imprimir Documento Oficial',
+    en: 'Print Official Document',
   },
   'billing.col.invoice_no': {
     es: 'Nº Factura',
@@ -884,6 +1538,72 @@ export const translations: TranslationsDict = {
   'billing.btn.print': {
     es: 'Imprimir Factura Oficial',
     en: 'Print Official Invoice',
+  },
+
+  // New Triage Intake Modal aliases
+  'modal.triage.select_patient': {
+    es: 'Seleccionar Paciente Registrado:',
+    en: 'Select Registered Patient:',
+  },
+  'modal.triage.chief_complaint': {
+    es: 'Motivo Principal de Consulta:',
+    en: 'Chief Complaint:',
+  },
+  'modal.triage.complaint_placeholder': {
+    es: 'Ej: Dolor agudo punzante en mandíbula, inflamación periapical...',
+    en: 'E.g.: Sharp throbbing jaw pain, periapical swelling...',
+  },
+  'modal.triage.symptoms_label': {
+    es: 'Síntomas Declarados y Hallazgos Clínicos:',
+    en: 'Reported Symptoms & Clinical Findings:',
+  },
+  'modal.triage.symptoms_placeholder': {
+    es: 'Describe síntomas adicionales, tiempo de evolución, antecedentes...',
+    en: 'Describe additional symptoms, onset time, history...',
+  },
+  'modal.triage.vitals_title': {
+    es: 'Registro de Constantes Vitales',
+    en: 'Vital Signs Record',
+  },
+  'modal.triage.bp': {
+    es: 'Tensión Arterial (PA):',
+    en: 'Blood Pressure (BP):',
+  },
+  'modal.triage.hr': {
+    es: 'Frecuencia Cardíaca (FC bpm):',
+    en: 'Heart Rate (HR bpm):',
+  },
+  'modal.triage.spo2': {
+    es: 'Saturación Oxígeno (SpO2 %):',
+    en: 'Oxygen Saturation (SpO2 %):',
+  },
+  'modal.triage.temp': {
+    es: 'Temperatura (°C):',
+    en: 'Temperature (°C):',
+  },
+  'modal.triage.pain_label': {
+    es: 'Escala de Dolor EVA (0 a 10):',
+    en: 'Pain Scale VAS (0 to 10):',
+  },
+  'modal.triage.red_flags_title': {
+    es: 'Signos de Alarma / Red Flags:',
+    en: 'Warning Signs / Red Flags:',
+  },
+  'modal.triage.ai_manchester_title': {
+    es: 'Clasificación IA según Escala Manchester',
+    en: 'AI Manchester Triage Classification',
+  },
+  'modal.triage.evaluating': {
+    es: 'Analizando agudeza clínica con IA...',
+    en: 'Analyzing clinical acuity with AI...',
+  },
+  'modal.triage.evaluate_ai': {
+    es: 'Calcular Nivel de Triaje con IA',
+    en: 'Evaluate Triage Level with AI',
+  },
+  'modal.triage.ai_rationale': {
+    es: 'Razonamiento Clínico de la IA:',
+    en: 'AI Clinical Rationale:',
   },
 
   // Modals

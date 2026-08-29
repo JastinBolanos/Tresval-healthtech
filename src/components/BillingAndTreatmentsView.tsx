@@ -42,7 +42,6 @@ export const BillingAndTreatmentsView: React.FC<BillingAndTreatmentsViewProps> =
   onAddTreatmentItem,
 }) => {
   const { language, t } = useLanguage();
-  const [activeTab, setActiveTab] = useState<'invoices' | 'treatment_plans'>('invoices');
   const [filterStatus, setFilterStatus] = useState<'all' | 'paid' | 'pending' | 'partially_paid'>('all');
   const [selectedInvoice, setSelectedInvoice] = useState<Invoice | null>(invoices[0] || null);
   const [showPrintModal, setShowPrintModal] = useState(false);
@@ -119,24 +118,15 @@ export const BillingAndTreatmentsView: React.FC<BillingAndTreatmentsViewProps> =
           </div>
         </div>
 
-        <div className="flex items-center gap-2 bg-white p-1 rounded-2xl border border-[#E9E9E2] text-xs font-semibold shadow-xs">
+        <div className="flex items-center gap-2">
           <button
-            id="tab-btn-invoices"
-            onClick={() => setActiveTab('invoices')}
-            className={`px-4 py-2 rounded-xl transition-all cursor-pointer ${
-              activeTab === 'invoices' ? 'bg-[#4A5D4E] text-white shadow-xs' : 'text-[#6B705C] hover:text-[#2D332D]'
-            }`}
+            id="btn-export-billing-csv"
+            onClick={() => exportService.exportInvoicesCsv(invoices)}
+            className="flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white hover:bg-[#F8F7F2] border border-[#E9E9E2] text-xs font-semibold text-[#4A5D4E] transition-colors shadow-xs cursor-pointer"
+            title={language === 'en' ? 'Export invoices to CSV' : 'Exportar libro de facturas a CSV'}
           >
-            {t('billing.tab.invoices')} ({invoices.length})
-          </button>
-          <button
-            id="tab-btn-treatments"
-            onClick={() => setActiveTab('treatment_plans')}
-            className={`px-4 py-2 rounded-xl transition-all cursor-pointer ${
-              activeTab === 'treatment_plans' ? 'bg-[#4A5D4E] text-white shadow-xs' : 'text-[#6B705C] hover:text-[#2D332D]'
-            }`}
-          >
-            {t('billing.tab.treatment_plans')}
+            <Download className="w-3.5 h-3.5 text-[#4A5D4E]" />
+            <span>{language === 'en' ? 'Export CSV' : 'Exportar CSV'}</span>
           </button>
         </div>
       </div>

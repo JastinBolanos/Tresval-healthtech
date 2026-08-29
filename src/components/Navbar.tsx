@@ -202,28 +202,26 @@ export const Navbar: React.FC<NavbarProps> = ({
               <button
                 id="btn-lang-es"
                 onClick={() => setLanguage('es')}
-                className={`flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   language === 'es'
                     ? 'bg-[#4A5D4E] text-white shadow-xs'
                     : 'text-[#6B705C] hover:text-[#2D332D] hover:bg-[#F8F7F2]'
                 }`}
-                title="Cambiar idioma a Español"
+                title="Español (ES)"
               >
-                <span>🇪🇸</span>
-                <span className="text-[11px]">ES</span>
+                <span className="text-xs tracking-wider">ES</span>
               </button>
               <button
                 id="btn-lang-en"
                 onClick={() => setLanguage('en')}
-                className={`flex items-center gap-1 px-2 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
                   language === 'en'
                     ? 'bg-[#4A5D4E] text-white shadow-xs'
                     : 'text-[#6B705C] hover:text-[#2D332D] hover:bg-[#F8F7F2]'
                 }`}
-                title="Switch language to English"
+                title="English (EN)"
               >
-                <span>🇺🇸</span>
-                <span className="text-[11px]">EN</span>
+                <span className="text-xs tracking-wider">EN</span>
               </button>
             </div>
 

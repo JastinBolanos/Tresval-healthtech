@@ -1,4 +1,5 @@
 import React from "react";
+import { useLanguage } from "../../context/LanguageContext";
 
 export type StatusType =
   | "waiting"
@@ -19,6 +20,8 @@ interface StatusPillProps {
 }
 
 export const StatusPill: React.FC<StatusPillProps> = ({ status, label, className = "" }) => {
+  const { language } = useLanguage();
+
   const getStatusStyles = (st: string) => {
     switch (st) {
       case "paid":
@@ -43,6 +46,32 @@ export const StatusPill: React.FC<StatusPillProps> = ({ status, label, className
 
   const getDisplayLabel = (st: string) => {
     if (label) return label;
+    if (language === "en") {
+      switch (st) {
+        case "paid":
+          return "Paid";
+        case "completed":
+          return "Completed";
+        case "in_chair":
+          return "In Chair";
+        case "in_progress":
+          return "In Progress";
+        case "waiting":
+          return "Waiting";
+        case "pending":
+          return "Pending";
+        case "scheduled":
+          return "Scheduled";
+        case "partially_paid":
+          return "Partially Paid";
+        case "overdue":
+          return "Overdue";
+        case "discharged":
+          return "Discharged";
+        default:
+          return st;
+      }
+    }
     switch (st) {
       case "paid":
         return "Pagado";

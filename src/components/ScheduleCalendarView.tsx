@@ -158,7 +158,7 @@ export const ScheduleCalendarView: React.FC<ScheduleCalendarViewProps> = ({
         {/* Doctor & Category Selectors */}
         <div className="flex items-center gap-3 flex-wrap text-xs">
           <div className="flex items-center gap-1.5">
-            <span className="text-[#6B705C] font-medium">{t('calendar.doctor_filter')}:</span>
+            <span className="text-[#6B705C] font-medium">{t('calendar.doctor_filter')}</span>
             <select
               id="filter-schedule-doctor"
               value={selectedDoctorFilter}
@@ -173,7 +173,7 @@ export const ScheduleCalendarView: React.FC<ScheduleCalendarViewProps> = ({
           </div>
 
           <div className="flex items-center gap-1.5">
-            <span className="text-[#6B705C] font-medium">{t('calendar.specialty_filter')}:</span>
+            <span className="text-[#6B705C] font-medium">{t('calendar.specialty_filter')}</span>
             <select
               id="filter-schedule-category"
               value={selectedCategoryFilter}
@@ -244,20 +244,20 @@ export const ScheduleCalendarView: React.FC<ScheduleCalendarViewProps> = ({
 
                         <div className="flex flex-wrap items-center gap-x-4 gap-y-1 text-xs text-[#6B705C]">
                           <span>
-                            {t('calendar.card.patient')}: <strong 
+                            {t('calendar.card.patient')} <strong 
                               onClick={() => patientObj && onSelectPatient(patientObj)}
                               className="text-[#4A5D4E] font-semibold cursor-pointer hover:underline"
                             >
                               {apt.patientName}
                             </strong> ({apt.patientMrn})
                           </span>
-                          <span>{t('calendar.card.doctor')}: <strong className="text-[#2D332D]">{apt.doctorName}</strong></span>
-                          <span>{t('calendar.card.location')}: <strong className="text-[#2D332D]">{apt.chairOrRoom}</strong></span>
+                          <span>{t('calendar.card.doctor')} <strong className="text-[#2D332D]">{apt.doctorName}</strong></span>
+                          <span>{t('calendar.card.location')} <strong className="text-[#2D332D]">{apt.chairOrRoom}</strong></span>
                         </div>
 
                         {apt.notes && (
                           <p className="text-xs text-[#6B705C] italic pt-0.5">
-                            {t('calendar.card.notes')}: "{apt.notes}"
+                            {t('calendar.card.notes')} "{apt.notes}"
                           </p>
                         )}
                       </div>

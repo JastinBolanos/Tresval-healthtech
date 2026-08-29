@@ -174,26 +174,26 @@ export const OdontogramView: React.FC<OdontogramViewProps> = ({
         key={tooth.toothNumber}
         id={`tooth-node-${tooth.toothNumber}`}
         onClick={() => handleToothClick(tooth.toothNumber)}
-        className={`relative flex flex-col items-center p-1 rounded-xl transition-all duration-150 cursor-pointer ${
+        className={`relative flex flex-col items-center p-1 rounded-xl transition-all duration-150 cursor-pointer shrink-0 w-11 sm:w-12 select-none ${
           isSelected 
-            ? 'bg-[#DDE5B6]/40 ring-2 ring-[#4A5D4E] scale-105 shadow-xs' 
+            ? 'bg-[#DDE5B6]/50 ring-2 ring-[#4A5D4E] scale-105 shadow-xs z-10' 
             : 'bg-white hover:bg-[#F8F7F2] border border-[#E9E9E2]'
         }`}
         title={`${language === 'en' ? 'Tooth' : 'Pieza'} ${tooth.toothNumber}: ${tooth.name} (${condInfo.name})`}
       >
         {/* FDI Tooth Number Badge */}
-        <span className={`text-[10px] font-mono font-bold ${
+        <span className={`text-[10px] font-mono font-bold leading-none mb-0.5 ${
           isSelected ? 'text-[#4A5D4E]' : 'text-[#6B705C]'
         }`}>
           {tooth.toothNumber}
         </span>
 
         {/* 5-Surface FDI Geometric Schematic Representation */}
-        <div className="relative w-9 h-9 my-1 rounded-md border border-[#E9E9E2] bg-white overflow-hidden shadow-2xs">
+        <div className="relative w-8 h-8 sm:w-9 sm:h-9 my-0.5 rounded-md border border-[#E9E9E2] bg-white overflow-hidden shadow-2xs">
           
           {/* Top Surface (Vestibular / Buccal) */}
           <div 
-            className={`absolute top-0.5 left-2 right-2 h-2.5 rounded-t-sm transition-colors ${
+            className={`absolute top-0.5 left-1.5 right-1.5 h-2 rounded-t-xs transition-colors ${
               surfaces.vestibular ? 'bg-[#A25032]' : 'bg-[#F8F7F2] hover:bg-[#E9E9E2]'
             }`}
             title={language === 'en' ? 'Buccal / Vestibular' : 'Vestibular'}
@@ -201,7 +201,7 @@ export const OdontogramView: React.FC<OdontogramViewProps> = ({
 
           {/* Bottom Surface (Lingual / Palatal) */}
           <div 
-            className={`absolute bottom-0.5 left-2 right-2 h-2.5 rounded-b-sm transition-colors ${
+            className={`absolute bottom-0.5 left-1.5 right-1.5 h-2 rounded-b-xs transition-colors ${
               surfaces.lingual ? 'bg-[#A25032]' : 'bg-[#F8F7F2] hover:bg-[#E9E9E2]'
             }`}
             title={language === 'en' ? 'Lingual / Palatal' : 'Lingual/Palatino'}
@@ -209,7 +209,7 @@ export const OdontogramView: React.FC<OdontogramViewProps> = ({
 
           {/* Left Surface (Mesial) */}
           <div 
-            className={`absolute top-2 bottom-2 left-0.5 w-2.5 rounded-l-sm transition-colors ${
+            className={`absolute top-1.5 bottom-1.5 left-0.5 w-2 rounded-l-xs transition-colors ${
               surfaces.mesial ? 'bg-[#A25032]' : 'bg-[#F8F7F2] hover:bg-[#E9E9E2]'
             }`}
             title="Mesial"
@@ -217,7 +217,7 @@ export const OdontogramView: React.FC<OdontogramViewProps> = ({
 
           {/* Right Surface (Distal) */}
           <div 
-            className={`absolute top-2 bottom-2 right-0.5 w-2.5 rounded-r-sm transition-colors ${
+            className={`absolute top-1.5 bottom-1.5 right-0.5 w-2 rounded-r-xs transition-colors ${
               surfaces.distal ? 'bg-[#A25032]' : 'bg-[#F8F7F2] hover:bg-[#E9E9E2]'
             }`}
             title="Distal"
@@ -225,7 +225,7 @@ export const OdontogramView: React.FC<OdontogramViewProps> = ({
 
           {/* Center (Occlusal / Incisal) */}
           <div 
-            className={`absolute inset-2 rounded-sm transition-colors flex items-center justify-center text-[8px] font-bold ${
+            className={`absolute inset-1.5 rounded-xs transition-colors flex items-center justify-center text-[7px] sm:text-[8px] font-bold ${
               surfaces.occlusal 
                 ? 'bg-[#A25032] text-white' 
                 : tooth.condition === 'implant' 
@@ -241,12 +241,12 @@ export const OdontogramView: React.FC<OdontogramViewProps> = ({
             {tooth.condition === 'implant' && 'IM'}
             {tooth.condition === 'endodontic' && 'EN'}
             {tooth.condition === 'crown' && 'CR'}
-            {tooth.condition === 'missing' && 'X'}
+            {tooth.condition === 'missing' && '✕'}
           </div>
         </div>
 
         {/* Condition mini-pill */}
-        <span className={`text-[9px] font-semibold mt-0.5 px-1.5 py-0.2 rounded-full truncate max-w-[46px] border ${condInfo.badge}`}>
+        <span className={`text-[8.5px] font-semibold mt-0.5 px-1 py-0.2 rounded-full truncate max-w-[42px] border ${condInfo.badge}`}>
           {tooth.condition === 'healthy' ? (language === 'en' ? 'Sound' : 'Sano') : condInfo.name.split(' ')[0]}
         </span>
       </button>
@@ -382,25 +382,27 @@ export const OdontogramView: React.FC<OdontogramViewProps> = ({
 
           {/* MAXILAR SUPERIOR (Cuadrante 1 y 2) */}
           {(showArchMode === 'both' || showArchMode === 'upper') && (
-            <div className="space-y-2 bg-[#F8F7F2] p-4 rounded-2xl border border-[#E9E9E2]">
-              <div className="text-[11px] font-bold text-[#6B705C] uppercase tracking-wider flex items-center justify-between">
-                <span>{t('odontogram.quad.1')}</span>
-                <span className="text-[#4A5D4E] font-medium">{t('odontogram.midline')}</span>
-                <span>{t('odontogram.quad.2')}</span>
+            <div className="space-y-2 bg-[#F8F7F2] p-3.5 sm:p-4 rounded-2xl border border-[#E9E9E2]">
+              <div className="text-[11px] font-bold text-[#6B705C] uppercase tracking-wider flex items-center justify-between px-1 pb-1 border-b border-[#E9E9E2]/60">
+                <span className="truncate">{t('odontogram.quad.1')}</span>
+                <span className="text-[#4A5D4E] font-medium px-2 py-0.5 bg-[#E9E9E2]/70 rounded-md text-[10px] shrink-0">{t('odontogram.midline')}</span>
+                <span className="truncate">{t('odontogram.quad.2')}</span>
               </div>
 
-              <div className="flex items-center justify-between gap-1 overflow-x-auto py-2">
-                {/* Quad 1: 18 -> 11 */}
-                <div className="flex items-center gap-1.5">
-                  {quad1.map(tooth => renderToothVisual(tooth, tooth.toothNumber === selectedToothNum))}
-                </div>
+              <div className="overflow-x-auto pb-2 pt-1 scrollbar-thin">
+                <div className="min-w-[660px] sm:min-w-[720px] flex items-center justify-between gap-1 px-1">
+                  {/* Quad 1: 18 -> 11 */}
+                  <div className="flex items-center gap-1 sm:gap-1.5 justify-end flex-1">
+                    {quad1.map(tooth => renderToothVisual(tooth, tooth.toothNumber === selectedToothNum))}
+                  </div>
 
-                {/* Vertical Midline Divider */}
-                <div className="h-16 w-0.5 bg-[#4A5D4E]/30 mx-2 shrink-0 rounded-full" />
+                  {/* Vertical Midline Divider */}
+                  <div className="h-16 w-0.5 bg-[#4A5D4E]/30 mx-2 shrink-0 rounded-full" />
 
-                {/* Quad 2: 21 -> 28 */}
-                <div className="flex items-center gap-1.5">
-                  {quad2.map(tooth => renderToothVisual(tooth, tooth.toothNumber === selectedToothNum))}
+                  {/* Quad 2: 21 -> 28 */}
+                  <div className="flex items-center gap-1 sm:gap-1.5 justify-start flex-1">
+                    {quad2.map(tooth => renderToothVisual(tooth, tooth.toothNumber === selectedToothNum))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -408,25 +410,27 @@ export const OdontogramView: React.FC<OdontogramViewProps> = ({
 
           {/* MANDÍBULA INFERIOR (Cuadrante 4 y 3) */}
           {(showArchMode === 'both' || showArchMode === 'lower') && (
-            <div className="space-y-2 bg-[#F8F7F2] p-4 rounded-2xl border border-[#E9E9E2]">
-              <div className="text-[11px] font-bold text-[#6B705C] uppercase tracking-wider flex items-center justify-between">
-                <span>{t('odontogram.quad.4')}</span>
-                <span className="text-[#4A5D4E] font-medium">{t('odontogram.midline')}</span>
-                <span>{t('odontogram.quad.3')}</span>
+            <div className="space-y-2 bg-[#F8F7F2] p-3.5 sm:p-4 rounded-2xl border border-[#E9E9E2]">
+              <div className="text-[11px] font-bold text-[#6B705C] uppercase tracking-wider flex items-center justify-between px-1 pb-1 border-b border-[#E9E9E2]/60">
+                <span className="truncate">{t('odontogram.quad.4')}</span>
+                <span className="text-[#4A5D4E] font-medium px-2 py-0.5 bg-[#E9E9E2]/70 rounded-md text-[10px] shrink-0">{t('odontogram.midline')}</span>
+                <span className="truncate">{t('odontogram.quad.3')}</span>
               </div>
 
-              <div className="flex items-center justify-between gap-1 overflow-x-auto py-2">
-                {/* Quad 4: 48 -> 41 */}
-                <div className="flex items-center gap-1.5">
-                  {quad4.map(tooth => renderToothVisual(tooth, tooth.toothNumber === selectedToothNum))}
-                </div>
+              <div className="overflow-x-auto pb-2 pt-1 scrollbar-thin">
+                <div className="min-w-[660px] sm:min-w-[720px] flex items-center justify-between gap-1 px-1">
+                  {/* Quad 4: 48 -> 41 */}
+                  <div className="flex items-center gap-1 sm:gap-1.5 justify-end flex-1">
+                    {quad4.map(tooth => renderToothVisual(tooth, tooth.toothNumber === selectedToothNum))}
+                  </div>
 
-                {/* Vertical Midline Divider */}
-                <div className="h-16 w-0.5 bg-[#4A5D4E]/30 mx-2 shrink-0 rounded-full" />
+                  {/* Vertical Midline Divider */}
+                  <div className="h-16 w-0.5 bg-[#4A5D4E]/30 mx-2 shrink-0 rounded-full" />
 
-                {/* Quad 3: 31 -> 38 */}
-                <div className="flex items-center gap-1.5">
-                  {quad3.map(tooth => renderToothVisual(tooth, tooth.toothNumber === selectedToothNum))}
+                  {/* Quad 3: 31 -> 38 */}
+                  <div className="flex items-center gap-1 sm:gap-1.5 justify-start flex-1">
+                    {quad3.map(tooth => renderToothVisual(tooth, tooth.toothNumber === selectedToothNum))}
+                  </div>
                 </div>
               </div>
             </div>
@@ -491,73 +495,79 @@ export const OdontogramView: React.FC<OdontogramViewProps> = ({
               <button
                 id="btn-cond-healthy"
                 onClick={() => handleApplyQuickCondition('healthy')}
-                className={`p-2.5 rounded-xl border text-left font-medium transition-all cursor-pointer ${
+                className={`p-2.5 rounded-xl border text-left font-medium transition-all cursor-pointer truncate flex items-center gap-1.5 ${
                   selectedTooth.condition === 'healthy'
                     ? 'bg-[#F8F7F2] border-[#4A5D4E] text-[#4A5D4E] font-bold shadow-2xs'
                     : 'bg-white border-[#E9E9E2] text-[#6B705C] hover:bg-[#F8F7F2]'
                 }`}
               >
-                ✓ {t('odontogram.cond.healthy')}
+                <span className="font-bold text-[#4A5D4E]">✓</span>
+                <span className="truncate">{t('odontogram.cond.healthy')}</span>
               </button>
 
               <button
                 id="btn-cond-caries"
                 onClick={() => handleApplyQuickCondition('caries')}
-                className={`p-2.5 rounded-xl border text-left font-medium transition-all cursor-pointer ${
+                className={`p-2.5 rounded-xl border text-left font-medium transition-all cursor-pointer truncate flex items-center gap-1.5 ${
                   selectedTooth.condition === 'caries'
                     ? 'bg-[#FDF0EC] border-[#D4A373] text-[#A25032] font-bold shadow-2xs'
                     : 'bg-white border-[#E9E9E2] text-[#A25032] hover:bg-[#FDF0EC]'
                 }`}
               >
-                ● {t('odontogram.cond.caries')}
+                <span className="text-[#A25032]">●</span>
+                <span className="truncate">{t('odontogram.cond.caries')}</span>
               </button>
 
               <button
                 id="btn-cond-endodontic"
                 onClick={() => handleApplyQuickCondition('endodontic')}
-                className={`p-2.5 rounded-xl border text-left font-medium transition-all cursor-pointer ${
+                className={`p-2.5 rounded-xl border text-left font-medium transition-all cursor-pointer truncate flex items-center gap-1.5 ${
                   selectedTooth.condition === 'endodontic'
                     ? 'bg-[#DDE5B6] border-[#A3B18A] text-[#4A5D4E] font-bold shadow-2xs'
                     : 'bg-white border-[#E9E9E2] text-[#4A5D4E] hover:bg-[#F4F7EE]'
                 }`}
               >
-                ◆ {t('odontogram.cond.endodontic')}
+                <span className="text-[#4A5D4E]">◆</span>
+                <span className="truncate">{t('odontogram.cond.endodontic')}</span>
               </button>
 
               <button
                 id="btn-cond-implant"
                 onClick={() => handleApplyQuickCondition('implant')}
-                className={`p-2.5 rounded-xl border text-left font-medium transition-all cursor-pointer ${
+                className={`p-2.5 rounded-xl border text-left font-medium transition-all cursor-pointer truncate flex items-center gap-1.5 ${
                   selectedTooth.condition === 'implant'
                     ? 'bg-[#4A5D4E] border-[#3E4D41] text-white font-bold shadow-2xs'
                     : 'bg-white border-[#E9E9E2] text-[#4A5D4E] hover:bg-[#F4F7EE]'
                 }`}
               >
-                ▲ {t('odontogram.cond.implant')}
+                <span>▲</span>
+                <span className="truncate">{t('odontogram.cond.implant')}</span>
               </button>
 
               <button
                 id="btn-cond-crown"
                 onClick={() => handleApplyQuickCondition('crown')}
-                className={`p-2.5 rounded-xl border text-left font-medium transition-all cursor-pointer ${
+                className={`p-2.5 rounded-xl border text-left font-medium transition-all cursor-pointer truncate flex items-center gap-1.5 ${
                   selectedTooth.condition === 'crown'
                     ? 'bg-[#FDF9EE] border-[#D4A373] text-[#976C24] font-bold shadow-2xs'
                     : 'bg-white border-[#E9E9E2] text-[#976C24] hover:bg-[#FDF9EE]'
                 }`}
               >
-                ★ {t('odontogram.cond.crown')}
+                <span className="text-[#976C24]">★</span>
+                <span className="truncate">{t('odontogram.cond.crown')}</span>
               </button>
 
               <button
                 id="btn-cond-extraction"
                 onClick={() => handleApplyQuickCondition('extraction_needed')}
-                className={`p-2.5 rounded-xl border text-left font-medium transition-all cursor-pointer ${
+                className={`p-2.5 rounded-xl border text-left font-medium transition-all cursor-pointer truncate flex items-center gap-1.5 ${
                   selectedTooth.condition === 'extraction_needed'
                     ? 'bg-[#FDF0EC] border-[#A25032] text-[#A25032] font-bold shadow-2xs'
                     : 'bg-white border-[#E9E9E2] text-[#A25032] hover:bg-[#FDF0EC]'
                 }`}
               >
-                ✕ {t('odontogram.cond.extraction')}
+                <span className="text-[#A25032]">✕</span>
+                <span className="truncate">{t('odontogram.cond.extraction')}</span>
               </button>
             </div>
           </div>

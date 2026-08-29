@@ -6,7 +6,6 @@ import {
   Sparkles, 
   ChevronRight, 
   UserCheck, 
-  Lock, 
   CheckCircle2, 
   Calendar,
   CreditCard,
@@ -15,6 +14,7 @@ import {
   Globe
 } from 'lucide-react';
 import { StaffProfile, ClinicCampus } from '../types';
+import { mockCampuses } from '../data/mockData';
 import { useLanguage } from '../context/LanguageContext';
 
 interface WelcomeScreenProps {
@@ -32,36 +32,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
   onEnter,
   onEnterApp,
   staffProfiles = [],
-  campuses = [
-    {
-      id: 'campus-metropolitano',
-      name: 'Tresval Clinic Metropolitano',
-      city: 'Madrid, España',
-      address: 'Paseo de la Castellana 142, Planta 4',
-      phone: '+34 910 448 900',
-      emergencyRoomActive: true,
-      availableChairs: 6,
-      totalChairs: 8,
-      occupiedChairs: 6,
-      totalBeds: 12,
-      occupiedBeds: 9,
-      tagline: 'Centro de Cirugía Maxilofacial & Odontología Integral'
-    },
-    {
-      id: 'campus-dental-suite',
-      name: 'Tresval Dental Suite',
-      city: 'Barcelona, España',
-      address: 'Avinguda Diagonal 640',
-      phone: '+34 934 112 300',
-      emergencyRoomActive: true,
-      availableChairs: 4,
-      totalChairs: 6,
-      occupiedChairs: 5,
-      totalBeds: 6,
-      occupiedBeds: 4,
-      tagline: 'Estética Dental Avanzada e Implantología Digital'
-    }
-  ],
+  campuses = mockCampuses,
 }) => {
   const { language, setLanguage, t, tSpecialty, tClinicalText } = useLanguage();
   const [selectedDoc, setSelectedDoc] = useState<string>(
@@ -101,45 +72,38 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-3 sm:gap-4">
-          
-          {/* Language Switcher in Welcome Header */}
-          <div className="flex items-center bg-white border border-[#E9E9E2] rounded-xl p-0.5 shadow-2xs">
-            <button
-              onClick={() => setLanguage('es')}
-              className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                language === 'es'
-                  ? 'bg-[#4A5D4E] text-white shadow-xs'
-                  : 'text-[#6B705C] hover:text-[#2D332D] hover:bg-[#F8F7F2]'
-              }`}
-              title="Cambiar idioma a Español"
-            >
-              <span>🇪🇸</span>
-              <span className="text-[11px]">ES</span>
-            </button>
-            <button
-              onClick={() => setLanguage('en')}
-              className={`flex items-center gap-1 px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
-                language === 'en'
-                  ? 'bg-[#4A5D4E] text-white shadow-xs'
-                  : 'text-[#6B705C] hover:text-[#2D332D] hover:bg-[#F8F7F2]'
-              }`}
-              title="Switch language to English"
-            >
-              <span>🇺🇸</span>
-              <span className="text-[11px]">EN</span>
-            </button>
-          </div>
-
+        <div className="flex items-center gap-2.5 sm:gap-3">
           <div className="hidden sm:flex items-center gap-2 bg-white border border-[#E9E9E2] px-3.5 py-1.5 rounded-full text-xs text-[#2D332D] shadow-xs">
             <span className="w-2 h-2 rounded-full bg-[#4A5D4E] animate-pulse" />
             <span className="font-semibold text-[#4A5D4E]">{selectedCampusName}</span>
             <span className="text-[#A3B18A]">•</span>
             <span className="text-[#6B705C]">{t('app.network')}</span>
           </div>
-          <div className="hidden md:flex items-center gap-1.5 text-xs text-[#6B705C] bg-white border border-[#E9E9E2] px-3 py-1.5 rounded-full shadow-xs">
-            <Lock className="w-3.5 h-3.5 text-[#4A5D4E]" />
-            <span>{t('app.encryption')}</span>
+
+          {/* Language Switcher in Welcome Header */}
+          <div className="flex items-center bg-white border border-[#E9E9E2] rounded-xl p-0.5 shadow-2xs">
+            <button
+              onClick={() => setLanguage('es')}
+              className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                language === 'es'
+                  ? 'bg-[#4A5D4E] text-white shadow-xs'
+                  : 'text-[#6B705C] hover:text-[#2D332D] hover:bg-[#F8F7F2]'
+              }`}
+              title="Español (ES)"
+            >
+              <span className="text-xs tracking-wider">ES</span>
+            </button>
+            <button
+              onClick={() => setLanguage('en')}
+              className={`px-2.5 py-1 rounded-lg text-xs font-bold transition-all cursor-pointer ${
+                language === 'en'
+                  ? 'bg-[#4A5D4E] text-white shadow-xs'
+                  : 'text-[#6B705C] hover:text-[#2D332D] hover:bg-[#F8F7F2]'
+              }`}
+              title="English (EN)"
+            >
+              <span className="text-xs tracking-wider">EN</span>
+            </button>
           </div>
         </div>
       </header>
@@ -193,7 +157,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
                 </div>
 
                 {activeTab === 'perfiles' ? (
-                  <div className="space-y-1.5 max-h-44 overflow-y-auto pr-1">
+                  <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
                     {staffProfiles.map((doc) => {
                       const isSelected = selectedDoc === doc.name;
                       return (
@@ -209,7 +173,14 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
                           <img
                             src={doc.avatar}
                             alt={doc.name}
-                            className="w-9 h-9 rounded-full object-cover border border-[#A3B18A]/40 shrink-0"
+                            referrerPolicy="no-referrer"
+                            onError={(e) => {
+                              // Graceful fallback to initial avatar if external image fails
+                              const target = e.currentTarget;
+                              target.onerror = null;
+                              target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(doc.name)}&background=4A5D4E&color=fff&size=128`;
+                            }}
+                            className="w-9 h-9 rounded-full object-cover border border-[#A3B18A]/40 shrink-0 bg-[#E9E9E2]"
                           />
                           <div className="flex-1 min-w-0">
                             <div className="flex items-center justify-between">
@@ -224,7 +195,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
                     })}
                   </div>
                 ) : (
-                  <div className="space-y-1.5 max-h-44 overflow-y-auto pr-1">
+                  <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
                     {campuses.map((camp) => {
                       const isSelected = selectedCampusName === camp.name;
                       return (
@@ -318,37 +289,81 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
                   </div>
                 </div>
 
-                <div className="space-y-3">
-                  <div className="p-4 rounded-2xl bg-[#F8F7F2] flex items-center border-l-4 border-[#A3B18A] hover:bg-[#F3F1E8] transition-colors cursor-pointer" onClick={() => handleLaunch('schedule')}>
-                    <div className="w-16 font-mono text-sm font-semibold text-[#2D332D]">09:00</div>
+                <div className="space-y-2.5 max-h-[360px] overflow-y-auto pr-1">
+                  <div className="p-3.5 rounded-2xl bg-[#F8F7F2] flex items-center border-l-4 border-[#A3B18A] hover:bg-[#F3F1E8] transition-colors cursor-pointer" onClick={() => handleLaunch('schedule')}>
+                    <div className="w-14 font-mono text-sm font-semibold text-[#2D332D]">09:00</div>
                     <div className="flex-1 min-w-0 pr-2">
                       <div className="font-bold text-sm text-[#2D332D]">Dra. Valentina Ortiz</div>
                       <div className="text-xs text-[#6B705C] truncate">{tClinicalText('Implante Transalveolar')} • Box 2 • Dra. Ortiz</div>
                     </div>
-                    <div className="text-[11px] px-3 py-1 bg-white rounded-full border border-[#E9E9E2] font-semibold text-[#4A5D4E]">
+                    <div className="text-[11px] px-3 py-1 bg-white rounded-full border border-[#E9E9E2] font-semibold text-[#4A5D4E] shrink-0">
                       {language === 'en' ? 'CONFIRMED' : 'CONFIRMADO'}
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-[#F8F7F2] flex items-center border-l-4 border-[#D4A373] hover:bg-[#F3F1E8] transition-colors cursor-pointer" onClick={() => handleLaunch('triage')}>
-                    <div className="w-16 font-mono text-sm font-semibold text-[#D4A373]">10:30</div>
+                  <div className="p-3.5 rounded-2xl bg-[#F8F7F2] flex items-center border-l-4 border-[#D4A373] hover:bg-[#F3F1E8] transition-colors cursor-pointer" onClick={() => handleLaunch('triage')}>
+                    <div className="w-14 font-mono text-sm font-semibold text-[#D4A373]">10:30</div>
                     <div className="flex-1 min-w-0 pr-2">
                       <div className="font-bold text-sm text-[#2D332D]">Marcos Pellegrini ({language === 'en' ? 'Triage Level 3' : 'Triaje Nivel 3'})</div>
                       <div className="text-xs text-[#6B705C] truncate">{tClinicalText('Dolor agudo molar 3.6')} • Box 1</div>
                     </div>
-                    <div className="text-[11px] px-3 py-1 bg-white rounded-full border border-[#E9E9E2] font-semibold text-[#D4A373]">
+                    <div className="text-[11px] px-3 py-1 bg-white rounded-full border border-[#E9E9E2] font-semibold text-[#D4A373] shrink-0">
                       {language === 'en' ? 'WAITING' : 'EN ESPERA'}
                     </div>
                   </div>
 
-                  <div className="p-4 rounded-2xl bg-[#F8F7F2] flex items-center border-l-4 border-[#4A5D4E] hover:bg-[#F3F1E8] transition-colors cursor-pointer" onClick={() => handleLaunch('odontogram')}>
-                    <div className="w-16 font-mono text-sm font-semibold text-[#4A5D4E]">11:45</div>
+                  <div className="p-3.5 rounded-2xl bg-[#F8F7F2] flex items-center border-l-4 border-[#4A5D4E] hover:bg-[#F3F1E8] transition-colors cursor-pointer" onClick={() => handleLaunch('odontogram')}>
+                    <div className="w-14 font-mono text-sm font-semibold text-[#4A5D4E]">11:45</div>
                     <div className="flex-1 min-w-0 pr-2">
                       <div className="font-bold text-sm text-[#2D332D]">Elena G. Santoro</div>
                       <div className="text-xs text-[#6B705C] truncate">{tClinicalText('Endodoncia Multirradicular & Reconstrucción')} • Box 4</div>
                     </div>
-                    <div className="text-[11px] px-3 py-1 bg-white rounded-full border border-[#E9E9E2] font-semibold text-[#4A5D4E]">
+                    <div className="text-[11px] px-3 py-1 bg-white rounded-full border border-[#E9E9E2] font-semibold text-[#4A5D4E] shrink-0">
                       {language === 'en' ? 'IN CHAIR' : 'EN SILLÓN'}
+                    </div>
+                  </div>
+
+                  <div className="p-3.5 rounded-2xl bg-[#F8F7F2] flex items-center border-l-4 border-[#A3B18A] hover:bg-[#F3F1E8] transition-colors cursor-pointer" onClick={() => handleLaunch('schedule')}>
+                    <div className="w-14 font-mono text-sm font-semibold text-[#2D332D]">13:15</div>
+                    <div className="flex-1 min-w-0 pr-2">
+                      <div className="font-bold text-sm text-[#2D332D]">Alejandro Garrido (DDS Valdés)</div>
+                      <div className="text-xs text-[#6B705C] truncate">{tClinicalText('Cirugía Guiada Implantes Straumann BLX')} • Quirófano 02</div>
+                    </div>
+                    <div className="text-[11px] px-3 py-1 bg-white rounded-full border border-[#E9E9E2] font-semibold text-[#4A5D4E] shrink-0">
+                      {language === 'en' ? 'CONFIRMED' : 'CONFIRMADO'}
+                    </div>
+                  </div>
+
+                  <div className="p-3.5 rounded-2xl bg-[#F8F7F2] flex items-center border-l-4 border-[#D4A373] hover:bg-[#F3F1E8] transition-colors cursor-pointer" onClick={() => handleLaunch('schedule')}>
+                    <div className="w-14 font-mono text-sm font-semibold text-[#D4A373]">14:45</div>
+                    <div className="flex-1 min-w-0 pr-2">
+                      <div className="font-bold text-sm text-[#2D332D]">Martina Vidal Soler</div>
+                      <div className="text-xs text-[#6B705C] truncate">{tClinicalText('Control Ortodoncia Spark + IPR')} • Box 03</div>
+                    </div>
+                    <div className="text-[11px] px-3 py-1 bg-white rounded-full border border-[#E9E9E2] font-semibold text-[#D4A373] shrink-0">
+                      {language === 'en' ? 'WAITING' : 'EN ESPERA'}
+                    </div>
+                  </div>
+
+                  <div className="p-3.5 rounded-2xl bg-[#F8F7F2] flex items-center border-l-4 border-[#6B705C] hover:bg-[#F3F1E8] transition-colors cursor-pointer" onClick={() => handleLaunch('patients')}>
+                    <div className="w-14 font-mono text-sm font-semibold text-[#6B705C]">16:00</div>
+                    <div className="flex-1 min-w-0 pr-2">
+                      <div className="font-bold text-sm text-[#2D332D]">Ignacio Herrera Benítez</div>
+                      <div className="text-xs text-[#6B705C] truncate">{tClinicalText('Hemostasia Quirúrgica & Sutura Post-Extracción')} • Box 01</div>
+                    </div>
+                    <div className="text-[11px] px-3 py-1 bg-white rounded-full border border-[#E9E9E2] font-semibold text-[#6B705C] shrink-0">
+                      {language === 'en' ? 'SCHEDULED' : 'PROGRAMADO'}
+                    </div>
+                  </div>
+
+                  <div className="p-3.5 rounded-2xl bg-[#F8F7F2] flex items-center border-l-4 border-[#4A5D4E] hover:bg-[#F3F1E8] transition-colors cursor-pointer" onClick={() => handleLaunch('patients')}>
+                    <div className="w-14 font-mono text-sm font-semibold text-[#4A5D4E]">17:15</div>
+                    <div className="flex-1 min-w-0 pr-2">
+                      <div className="font-bold text-sm text-[#2D332D]">Sofia Navarro Morales</div>
+                      <div className="text-xs text-[#6B705C] truncate">{tClinicalText('Control Post-Drenaje & RX Periapical')} • Box 02</div>
+                    </div>
+                    <div className="text-[11px] px-3 py-1 bg-white rounded-full border border-[#E9E9E2] font-semibold text-[#4A5D4E] shrink-0">
+                      {language === 'en' ? 'CONFIRMED' : 'CONFIRMADO'}
                     </div>
                   </div>
                 </div>
@@ -424,8 +439,6 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
           <span>{language === 'en' ? 'Manchester Triage' : 'Triaje Manchester'}</span>
           <span>•</span>
           <span>{language === 'en' ? 'FDI 32 Dental Chart' : 'Odontograma FDI 32'}</span>
-          <span>•</span>
-          <span>HL7/FHIR Compliant</span>
         </div>
       </footer>
 

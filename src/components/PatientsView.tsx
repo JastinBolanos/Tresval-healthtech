@@ -480,6 +480,7 @@ export const PatientDetailView: React.FC<PatientDetailViewProps> = ({
                       <img
                         src={ev.imagingUrl}
                         alt="Radiografía Dental"
+                        referrerPolicy="no-referrer"
                         className="w-full h-44 object-cover group-hover:scale-105 transition-transform duration-300 opacity-90 group-hover:opacity-100"
                       />
                       <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent flex items-end p-3">
@@ -704,7 +705,7 @@ export const PatientDetailView: React.FC<PatientDetailViewProps> = ({
               </button>
             </div>
             <div className="rounded-2xl overflow-hidden border border-[#E9E9E2] bg-black flex items-center justify-center max-h-[70vh]">
-              <img src={activeImageModal} alt="Radiografía" className="max-h-[68vh] object-contain" />
+              <img src={activeImageModal} alt="Radiografía" referrerPolicy="no-referrer" className="max-h-[68vh] object-contain" />
             </div>
             <div className="flex items-center justify-between text-xs text-[#6B705C]">
               <span>{t('patient.viewer.specs')}</span>

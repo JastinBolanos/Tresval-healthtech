@@ -6,7 +6,7 @@ import { Appointment, Invoice, Patient } from "../types";
 class StorageService {
   private static readonly KEYS = {
     PATIENTS: "tresval_patients_v1",
-    APPOINTMENTS: "tresval_appointments_v1",
+    APPOINTMENTS: "tresval_appointments_v2",
     INVOICES: "tresval_invoices_v1",
     LANGUAGE: "tresvalclinic_lang",
     LEGACY_LANG: "auraclinic_lang",

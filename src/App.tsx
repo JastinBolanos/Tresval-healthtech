@@ -3,7 +3,8 @@ import {
   mockPatients, 
   mockAppointments, 
   mockInvoices, 
-  mockStaffProfiles 
+  mockStaffProfiles,
+  mockCampuses
 } from './data/mockData';
 import { 
   Patient, 
@@ -64,16 +65,7 @@ function MainAppContent() {
   
   // Active session profile
   const [currentDoctor, setCurrentDoctor] = useState<StaffProfile>(mockStaffProfiles[0]);
-  const [activeCampus, setActiveCampus] = useState<CampusLocation>({
-    id: 'campus-metropolitano',
-    name: 'Tresval Clinic Metropolitano',
-    city: 'Madrid, España',
-    address: 'Paseo de la Castellana 142, Planta 4',
-    phone: '+34 910 448 900',
-    emergencyRoomActive: true,
-    availableChairs: 6,
-    totalChairs: 8,
-  });
+  const [activeCampus, setActiveCampus] = useState<CampusLocation>(mockCampuses[0]);
 
   // UI state
   const [isPrivacyMode, setIsPrivacyMode] = useState(false);
@@ -86,8 +78,9 @@ function MainAppContent() {
   // Handler: Enter from Welcome Screen
   const handleEnterApp = (targetView: string, doctorName: string, campus: string) => {
     const doc = staffProfiles.find(s => s.name === doctorName) || staffProfiles[0];
+    const camp = mockCampuses.find(c => c.name === campus) || mockCampuses[0];
     setCurrentDoctor(doc);
-    setActiveCampus(prev => ({ ...prev, name: campus }));
+    setActiveCampus(camp);
     setActiveView(targetView);
   };
 
@@ -289,6 +282,7 @@ function MainAppContent() {
       <WelcomeScreen
         onEnter={handleEnterApp}
         staffProfiles={staffProfiles}
+        campuses={mockCampuses}
       />
     );
   }
