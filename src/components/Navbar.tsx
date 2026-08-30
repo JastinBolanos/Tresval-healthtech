@@ -99,8 +99,8 @@ export const Navbar: React.FC<NavbarProps> = ({
               title={t('nav.brand.tooltip')}
             >
               <div className="w-9 h-9 rounded-xl bg-[#4A5D4E] flex items-center justify-center text-white shadow-xs group-hover:bg-[#3E4D41] transition-colors">
-                <div className="w-4 h-4 border-2 border-white rounded-full flex items-center justify-center">
-                  <div className="w-1 h-1 bg-white rounded-full" />
+                <div className="w-4 h-4 border-2 border-white rounded-full flex items-center justify-center relative">
+                  <div className="w-1 h-1 bg-white rounded-full animate-wander-dot-sm" />
                 </div>
               </div>
               <div className="hidden sm:block">

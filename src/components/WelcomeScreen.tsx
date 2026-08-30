@@ -11,11 +11,17 @@ import {
   CreditCard,
   ArrowRight,
   ShieldCheck,
-  Globe
+  Globe,
+  Lock,
+  Play,
+  CircleDot,
+  Radio,
+  Users
 } from 'lucide-react';
 import { StaffProfile, ClinicCampus } from '../types';
 import { mockCampuses } from '../data/mockData';
 import { useLanguage } from '../context/LanguageContext';
+import { LoginModal } from './LoginModal';
 
 interface WelcomeScreenProps {
   onEnter?: (targetView: string, doctorName: string, campus: string) => void;
@@ -42,6 +48,7 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
     campuses[0]?.name || 'Tresval Clinic Metropolitano'
   );
   const [activeTab, setActiveTab] = useState<'perfiles' | 'sedes'>('perfiles');
+  const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
 
   const handleLaunch = (view: string = 'triage') => {
     if (onEnter) {
@@ -58,8 +65,8 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
       <header className="w-full max-w-7xl mx-auto px-6 py-5 flex items-center justify-between border-b border-[#E9E9E2]">
         <div className="flex items-center gap-3">
           <div className="w-10 h-10 bg-[#4A5D4E] rounded-xl flex items-center justify-center shadow-sm">
-            <div className="w-5 h-5 border-2 border-white rounded-full flex items-center justify-center">
-              <div className="w-1.5 h-1.5 bg-white rounded-full" />
+            <div className="w-5 h-5 border-2 border-white rounded-full flex items-center justify-center relative">
+              <div className="w-1.5 h-1.5 bg-white rounded-full animate-wander-dot" />
             </div>
           </div>
           <div>
@@ -130,12 +137,20 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
                 </p>
               </div>
 
-              {/* Doctor / Profile Switcher Strip */}
+              {/* Live Medical Team & Network Status Strip */}
               <div className="bg-white rounded-2xl p-4 border border-[#E9E9E2] shadow-xs space-y-3">
                 <div className="flex items-center justify-between">
-                  <span className="text-xs font-bold text-[#A3B18A] uppercase tracking-wider">
-                    {t('welcome.active_doctor')}
-                  </span>
+                  <div className="flex items-center gap-2">
+                    <span className="relative flex h-2.5 w-2.5">
+                      <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-emerald-400 opacity-75"></span>
+                      <span className="relative inline-flex rounded-full h-2.5 w-2.5 bg-emerald-600"></span>
+                    </span>
+                    <span className="text-xs font-bold text-[#4A5D4E] uppercase tracking-wider">
+                      {activeTab === 'perfiles' 
+                        ? (language === 'en' ? 'Live Medical Staff • Active Shifts' : 'Cuerpo Médico en Servicio') 
+                        : (language === 'en' ? 'Hospital Campus Network' : 'Red de Sedes Hospitalarias')}
+                    </span>
+                  </div>
                   <div className="flex gap-1 bg-[#F8F7F2] p-0.5 rounded-lg border border-[#E9E9E2] text-[11px]">
                     <button
                       onClick={() => setActiveTab('perfiles')}
@@ -157,65 +172,100 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
                 </div>
 
                 {activeTab === 'perfiles' ? (
-                  <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
-                    {staffProfiles.map((doc) => {
-                      const isSelected = selectedDoc === doc.name;
+                  <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
+                    {staffProfiles.map((doc, idx) => {
+                      const statusConfig = {
+                        on_duty: {
+                          dot: 'bg-emerald-500',
+                          badge: 'bg-emerald-50 text-emerald-700 border-emerald-200',
+                          label: language === 'en' ? 'In Consult' : 'En Consulta'
+                        },
+                        in_surgery: {
+                          dot: 'bg-amber-500 animate-pulse',
+                          badge: 'bg-amber-50 text-amber-700 border-amber-200',
+                          label: language === 'en' ? 'In Surgery' : 'En Quirófano'
+                        },
+                        off_duty: {
+                          dot: 'bg-slate-400',
+                          badge: 'bg-slate-50 text-slate-600 border-slate-200',
+                          label: language === 'en' ? 'Standby' : 'Guardia'
+                        }
+                      };
+
+                      const status = doc.activeStatus ? statusConfig[doc.activeStatus] : statusConfig[idx === 1 ? 'in_surgery' : 'on_duty'];
+
                       return (
-                        <button
+                        <div
                           key={doc.id}
-                          onClick={() => setSelectedDoc(doc.name)}
-                          className={`w-full text-left p-2.5 rounded-xl border transition-all flex items-center gap-3 cursor-pointer ${
-                            isSelected
-                              ? 'bg-[#F8F7F2] border-[#4A5D4E] ring-1 ring-[#4A5D4E]/20 text-[#2D332D]'
-                              : 'bg-white border-[#E9E9E2] hover:bg-[#F8F7F2] text-[#2D332D]'
-                          }`}
+                          className="w-full text-left p-3 rounded-xl border border-[#E9E9E2] bg-[#FAF9F6] hover:bg-white hover:border-[#D5D8CB] transition-all flex items-center gap-3 shadow-2xs group"
                         >
-                          <img
-                            src={doc.avatar}
-                            alt={doc.name}
-                            referrerPolicy="no-referrer"
-                            onError={(e) => {
-                              // Graceful fallback to initial avatar if external image fails
-                              const target = e.currentTarget;
-                              target.onerror = null;
-                              target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(doc.name)}&background=4A5D4E&color=fff&size=128`;
-                            }}
-                            className="w-9 h-9 rounded-full object-cover border border-[#A3B18A]/40 shrink-0 bg-[#E9E9E2]"
-                          />
-                          <div className="flex-1 min-w-0">
-                            <div className="flex items-center justify-between">
-                              <h4 className="text-xs font-bold truncate text-[#2D332D]">{doc.name}</h4>
-                              <span className="text-[10px] font-mono text-[#6B705C]">{doc.licenseNumber}</span>
-                            </div>
-                            <p className="text-[11px] text-[#6B705C] truncate">{tSpecialty(doc.specialty)}</p>
+                          <div className="relative shrink-0">
+                            <img
+                              src={doc.avatar}
+                              alt={doc.name}
+                              referrerPolicy="no-referrer"
+                              onError={(e) => {
+                                const target = e.currentTarget;
+                                target.onerror = null;
+                                target.src = `https://ui-avatars.com/api/?name=${encodeURIComponent(doc.name)}&background=4A5D4E&color=fff&size=128`;
+                              }}
+                              className="w-10 h-10 rounded-full object-cover border border-[#A3B18A]/40 bg-[#E9E9E2]"
+                            />
+                            <span className={`absolute bottom-0 right-0 w-3 h-3 rounded-full border-2 border-white ${status.dot}`} />
                           </div>
-                          {isSelected && <CheckCircle2 className="w-4 h-4 text-[#4A5D4E] shrink-0" />}
-                        </button>
+                          <div className="flex-1 min-w-0">
+                            <div className="flex items-center justify-between gap-2">
+                              <h4 className="text-xs font-bold truncate text-[#2D332D] group-hover:text-[#4A5D4E] transition-colors">
+                                {doc.name}
+                              </h4>
+                              <span className={`text-[10px] font-semibold px-2 py-0.5 rounded-full border ${status.badge} shrink-0`}>
+                                {status.label}
+                              </span>
+                            </div>
+                            <p className="text-[11px] text-[#6B705C] truncate mt-0.5">{tSpecialty(doc.specialty)}</p>
+                            <div className="flex items-center gap-2 mt-1 text-[10px] text-[#8C927B]">
+                              <span className="font-mono">{doc.licenseNumber}</span>
+                              <span>•</span>
+                              <span>{doc.shift || (language === 'en' ? 'Active Shift' : 'Turno Activo')}</span>
+                            </div>
+                          </div>
+                        </div>
                       );
                     })}
                   </div>
                 ) : (
-                  <div className="space-y-1.5 max-h-56 overflow-y-auto pr-1">
-                    {campuses.map((camp) => {
-                      const isSelected = selectedCampusName === camp.name;
-                      return (
-                        <button
-                          key={camp.id}
-                          onClick={() => setSelectedCampusName(camp.name)}
-                          className={`w-full text-left p-2.5 rounded-xl border transition-all flex items-center justify-between cursor-pointer ${
-                            isSelected
-                              ? 'bg-[#F8F7F2] border-[#4A5D4E] ring-1 ring-[#4A5D4E]/20 text-[#2D332D]'
-                              : 'bg-white border-[#E9E9E2] hover:bg-[#F8F7F2] text-[#2D332D]'
-                          }`}
-                        >
-                          <div>
-                            <h4 className="text-xs font-bold text-[#2D332D]">{camp.name}</h4>
-                            <p className="text-[10px] text-[#6B705C]">{camp.city} • {camp.totalChairs} {language === 'en' ? 'chairs' : 'sillones'}</p>
+                  <div className="space-y-2 max-h-60 overflow-y-auto pr-1">
+                    {campuses.map((camp) => (
+                      <div
+                        key={camp.id}
+                        className="w-full text-left p-3 rounded-xl border border-[#E9E9E2] bg-[#FAF9F6] hover:bg-white hover:border-[#D5D8CB] transition-all flex items-center justify-between shadow-2xs group"
+                      >
+                        <div className="min-w-0 flex-1 pr-2">
+                          <div className="flex items-center gap-2">
+                            <h4 className="text-xs font-bold text-[#2D332D] truncate group-hover:text-[#4A5D4E] transition-colors">
+                              {camp.name}
+                            </h4>
+                            {camp.emergencyActive && (
+                              <span className="text-[9px] font-bold px-1.5 py-0.5 rounded bg-rose-50 text-rose-700 border border-rose-200 uppercase shrink-0">
+                                24h
+                              </span>
+                            )}
                           </div>
-                          {isSelected && <CheckCircle2 className="w-4 h-4 text-[#4A5D4E] shrink-0" />}
-                        </button>
-                      );
-                    })}
+                          <p className="text-[11px] text-[#6B705C] truncate mt-0.5">{camp.city}</p>
+                          <div className="flex items-center gap-3 mt-1 text-[10px] text-[#8C927B]">
+                            <span className="flex items-center gap-1">
+                              <span className="w-1.5 h-1.5 rounded-full bg-emerald-500"></span>
+                              {camp.occupiedChairs}/{camp.totalChairs} {language === 'en' ? 'chairs active' : 'sillones ocupados'}
+                            </span>
+                            <span>•</span>
+                            <span>{camp.totalBeds} {language === 'en' ? 'clinical beds' : 'camas'}</span>
+                          </div>
+                        </div>
+                        <div className="shrink-0 flex flex-col items-end justify-center">
+                          <div className="w-2 h-2 rounded-full bg-emerald-500 ring-4 ring-emerald-100"></div>
+                        </div>
+                      </div>
+                    ))}
                   </div>
                 )}
               </div>
@@ -225,14 +275,54 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
             <div className="space-y-3 pt-2">
               <button 
                 id="btn-enter-system"
-                onClick={() => handleLaunch('triage')}
-                className="w-full py-4.5 bg-[#4A5D4E] text-white rounded-2xl font-semibold text-base hover:bg-[#3E4D41] transition-all flex items-center justify-between px-6 shadow-md shadow-[#4A5D4E]/15 cursor-pointer group"
+                onClick={() => setIsLoginModalOpen(true)}
+                className="w-full py-4 bg-[#4A5D4E] hover:bg-[#3E4D41] text-white rounded-2xl font-semibold text-base transition-all flex items-center justify-between px-5 shadow-lg shadow-[#4A5D4E]/20 cursor-pointer group hover:scale-[1.01] active:scale-[0.99] border border-white/10"
               >
-                <div className="text-left">
-                  <span>{t('welcome.enter_btn')}</span>
-                  <p className="text-[11px] font-normal text-white/80">{t('welcome.connected_as')} {selectedDoc.split(',')[0]}</p>
+                <div className="flex items-center gap-3.5 text-left">
+                  <div className="w-10 h-10 rounded-xl bg-white/15 border border-white/20 flex items-center justify-center text-white shrink-0 group-hover:scale-105 transition-transform">
+                    <Lock className="w-5 h-5" />
+                  </div>
+                  <div>
+                    <span className="text-base font-bold block tracking-tight">
+                      {language === 'en' ? 'Sign In to Clinical System' : 'Ingresar al Sistema'}
+                    </span>
+                    <span className="text-[11px] font-normal text-[#DDE5B6] block">
+                      {language === 'en' ? 'Authorized Clinical Workstation' : 'Acceso a Estación Clínica Autorizada'}
+                    </span>
+                  </div>
                 </div>
-                <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-1 transition-transform" />
+                <div className="w-9 h-9 rounded-xl bg-white/10 flex items-center justify-center group-hover:bg-white/20 transition-colors">
+                  <ArrowRight className="w-5 h-5 text-white group-hover:translate-x-0.5 transition-transform" />
+                </div>
+              </button>
+
+              {/* Beautiful Demonstration Banner / Button */}
+              <button
+                id="btn-explore-demo-welcome"
+                type="button"
+                onClick={() => handleLaunch('triage')}
+                className="w-full p-3.5 rounded-2xl bg-gradient-to-r from-[#F4F6F0] via-[#FAF9F5] to-[#EAEFE3] hover:from-[#EDF1E7] hover:to-[#E0E7D6] border border-[#D5D8CB] transition-all flex items-center justify-between gap-3 text-left group cursor-pointer shadow-xs hover:shadow-md"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="w-9 h-9 rounded-xl bg-[#4A5D4E] text-white flex items-center justify-center shrink-0 shadow-xs group-hover:scale-105 transition-transform">
+                    <Sparkles className="w-4.5 h-4.5 text-[#DDE5B6]" />
+                  </div>
+                  <div>
+                    <p className="text-xs font-bold text-[#2D332D] group-hover:text-[#4A5D4E] transition-colors leading-tight">
+                      {language === 'en' 
+                        ? 'Not an administrator?' 
+                        : '¿No eres administrador?'}
+                    </p>
+                    <p className="text-[11px] text-[#6B705C] mt-0.5 leading-snug">
+                      {language === 'en'
+                        ? 'You can view a workflow demonstration here'
+                        : 'Puedes ver una demostración del flujo de trabajo aquí'}
+                    </p>
+                  </div>
+                </div>
+                <div className="w-8 h-8 rounded-xl bg-white border border-[#D5D8CB] flex items-center justify-center text-[#4A5D4E] group-hover:bg-[#4A5D4E] group-hover:text-white transition-all shrink-0">
+                  <Play className="w-3.5 h-3.5 fill-current" />
+                </div>
               </button>
 
               {/* Direct Portal Jump Pills */}
@@ -442,6 +532,12 @@ export const WelcomeScreen: React.FC<WelcomeScreenProps> = ({
         </div>
       </footer>
 
+      {/* Login Modal */}
+      <LoginModal 
+        isOpen={isLoginModalOpen} 
+        onClose={() => setIsLoginModalOpen(false)} 
+        onExploreDemo={(view) => handleLaunch(view || 'triage')}
+      />
     </div>
   );
 };
