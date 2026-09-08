@@ -8,7 +8,18 @@
 > **Sistema Integral de Gestión Clínica y Triaje Asistido por IA.** 
 > Plataforma empresarial desplegada para la digitalización y orquestación operativa de redes hospitalarias y clínicas especializadas. Combina un expediente clínico electrónico (EHR) avanzado, odontograma digital interactivo, mesa de urgencias con inferencia clínica y facturación multi-sede bajo estrictos protocolos de privacidad de datos.
 
-🌍 **[Ver Plataforma en Vivo (Producción) 🟢]** *(Enlace a Vercel/Netlify)*
+🌍 **[Ver Plataforma en Vivo (Producción) 🟢]** *https://tresval.vercel.app/*
+
+![Vista Previa de Tresval Clinic OS](https://github.com/user-attachments/assets/d17eac7c-cf43-43d6-b990-8ae29a76e1bd)
+
+---
+
+## 🎥 Demostración del Ecosistema Clínico
+
+**🎬 Panel de Control Médico y Herramientas Clínicas**  
+Exploración de la interfaz HealthTech: desde el triaje de urgencias y el odontograma interactivo, hasta el manejo del expediente clínico electrónico (EHR) y el enmascaramiento de datos (Data Masking) para cumplimiento HIPAA.
+
+https://github.com/user-attachments/assets/afbf8d26-8bbe-40db-81d0-51f9e79af174
 
 ---
 
