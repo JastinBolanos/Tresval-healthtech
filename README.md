@@ -5,99 +5,101 @@
 ![Compliance](https://img.shields.io/badge/compliance-HIPAA%20%7C%20GDPR-success)
 ![Security](https://img.shields.io/badge/security-TLS_1.3-orange)
 
-> **Sistema Integral de Gestión Clínica y Triaje Asistido por IA.** 
-> Plataforma empresarial desplegada para la digitalización y orquestación operativa de redes hospitalarias y clínicas especializadas. Combina un expediente clínico electrónico (EHR) avanzado, odontograma digital interactivo, mesa de urgencias con inferencia clínica y facturación multi-sede bajo estrictos protocolos de privacidad de datos.
+> **Comprehensive Clinical Management and AI-Assisted Triage System.** 
+> Enterprise platform deployed for the digitization and operational orchestration of hospital networks and specialized clinics. Combines an advanced electronic health record (EHR), an interactive digital odontogram, an emergency triage desk with clinical inference, and multi-campus billing under strict data privacy protocols.
 
-🌍 **[Ver Plataforma en Vivo (Producción) 🟢]** *https://tresval.vercel.app/*
+🌍 **[View Live Platform (Production) 🟢]** *https://tresval.vercel.app/*
 
-![Vista Previa de Tresval Clinic OS](https://github.com/user-attachments/assets/d17eac7c-cf43-43d6-b990-8ae29a76e1bd)
+![Tresval Clinic OS Preview](https://github.com/user-attachments/assets/d17eac7c-cf43-43d6-b990-8ae29a76e1bd)
 
 ---
 
-## 🎥 Demostración del Ecosistema Clínico
+## 🎥 Clinical Ecosystem Demonstration
 
-**🎬 Panel de Control Médico y Herramientas Clínicas**  
-Exploración de la interfaz HealthTech: desde el triaje de urgencias y el odontograma interactivo, hasta el manejo del expediente clínico electrónico (EHR) y el enmascaramiento de datos (Data Masking) para cumplimiento HIPAA.
+**🎬 Medical Dashboard & Clinical Tools**  
+HealthTech interface walkthrough: from emergency triage and the interactive odontogram, to electronic health record (EHR) management and Data Masking for HIPAA compliance.
 
 https://github.com/user-attachments/assets/afbf8d26-8bbe-40db-81d0-51f9e79af174
 
 ---
 
-## 🏗️ Arquitectura de Sistema y Stack Tecnológico
+## 🏗️ System Architecture & Tech Stack
 
-Este repositorio contiene la arquitectura de la aplicación cliente (Web/Edge) y el API Gateway interno, optimizados para entornos de misión crítica con tolerancia a fallos. *(Nota: Por normativas de protección de datos de salud - HIPAA/RGPD, los repositorios de bases de datos de pacientes, PACS/Dicom y microservicios de facturación fiscal permanecen privados).*
+This repository contains the architecture for the client application (Web/Edge) and the internal API Gateway, optimized for mission-critical, fault-tolerant environments. *(Note: Due to healthcare data privacy regulations - HIPAA/GDPR, patient database repositories, PACS/DICOM, and fiscal billing microservices remain private).*
 
 - **Core & Runtime (Edge-Optimized):**
-  - `react` (`^19.0.1`) & `react-dom` para interfaces médicas reactivas y de baja latencia.
-  - `typescript` (`~5.8.2`) garantizando seguridad de tipos en modelos de datos clínicos.
-  - `vite` (`^6.2.3`) para compilación y empaquetado de alto rendimiento en el cliente.
-- **Backend & Proxy Seguro:**
-  - `express` (`^4.21.2`) como API Gateway intermedio para ofuscar credenciales.
-  - `esbuild` (`^0.25.0`) para la transpilación ultrarrápida del servidor a `dist/server.cjs`.
-- **Interfaz de Usuario (UI) & Diseño "Natural Tones":**
-  - `tailwindcss` (`^4.1.14`) estructurando un diseño de bajo contraste visual para prevenir fatiga médica.
-  - `motion` (`^12.23.24`) para microinteracciones fluidas en flujos de trabajo críticos.
-  - `lucide-react` para iconografía médica estandarizada.
-- **Motor de Inferencia Clínica (IA):**
-  - Integración nativa con `@google/genai` (`^2.4.0`) implementando el modelo `gemini-2.5-flash` con un motor heurístico local de respaldo ante caídas de red.
+  - `react` (`^19.0.1`) & `react-dom` for reactive, low-latency medical interfaces.
+  - `typescript` (`~5.8.2`) ensuring type safety across clinical data models.
+  - `vite` (`^6.2.3`) for high-performance compilation and client bundling.
+- **Backend & Secure Proxy:**
+  - `express` (`^4.21.2`) as an intermediate API Gateway to obfuscate credentials.
+  - `esbuild` (`^0.25.0`) for ultra-fast server bundling to `dist/server.cjs`.
+- **User Interface (UI) & "Natural Tones" Design:**
+  - `tailwindcss` (`^4.1.14`) structuring a low-contrast visual design to prevent medical screen fatigue.
+  - `motion` (`^12.23.24`) for fluid micro-interactions across critical workflows.
+  - `lucide-react` for standardized medical iconography.
+- **Clinical Inference Engine (AI):**
+  - Native integration with `@google/genai` (`^2.4.0`) leveraging the `gemini-2.5-flash` model alongside a local fallback heuristic engine for offline resilience.
 
 ---
 
-## 🚀 Módulos Operativos (Desplegados)
+## 🚀 Operational Modules (Deployed)
 
-### 🚨 1. Mesa de Triaje de Urgencias (Sistema Manchester)
-* **Monitorización Vital:** Ingesta de signos vitales (FC, SpO₂, TA, Temperatura, Dolor EVA).
-* **Clasificación Asistida:** Asignación automática de los 5 niveles de prioridad, sugerencia de códigos diagnósticos (CIE-10/ICD-10) y proyección de tiempos de espera.
+### 🚨 1. Emergency Triage Desk (Manchester System)
+* **Vital Signs Monitoring:** Intake of vital signs (HR, SpO₂, BP, Temperature, VAS Pain Scale).
+* **Assisted Classification:** Automatic assignment of 5 priority levels, suggested diagnostic codes (ICD-10), and projected wait times.
 
-### 🦷 2. Odontograma Digital Interactivo (Notación FDI)
-* **Mapeo Anatómico 3D-Like:** Control de 32 piezas en 4 cuadrantes con granularidad por superficies (oclusal, mesial, distal, vestibular, lingual).
-* **Registro Patológico:** Trazabilidad de caries, endodoncias, implantes, coronas y evaluación periodontal en tiempo real.
+### 🦷 2. Interactive Digital Odontogram (FDI Notation)
+* **3D-Like Anatomical Mapping:** Full control over 32 teeth across 4 quadrants with surface-level granularity (occlusal, mesial, distal, vestibular, lingual).
+* **Pathology Tracking:** Real-time logging of caries, root canals, implants, crowns, and periodontal assessments.
 
-### 📋 3. Expediente Clínico Electrónico (EHR) & Notas SOAP
-* **Línea Temporal Médica:** Trazabilidad inmutable de la historia del paciente con alertas automáticas de alergias (Red Flags).
-* **Estructuración SOAP:** Formulación médica estandarizada (Subjetivo, Objetivo, Análisis, Plan) con descargas en formato **JSON**.
+### 📋 3. Electronic Health Record (EHR) & SOAP Notes
+* **Medical Timeline:** Immutable traceability of patient history featuring automatic allergy alerts (Red Flags).
+* **SOAP Structuring:** Standardized clinical documentation (Subjective, Objective, Assessment, Plan) with **JSON** export capability.
 
-### 💳 4. Facturación, Copagos y Aseguradoras
-* **Presupuestos por Fases:** Estructuración de tratamientos clínicos (Saneamiento, Restauración, Estética).
-* **Cámara de Compensación:** Liquidación automática de coberturas de seguros, cálculo de copagos y exportación de auditorías a **CSV**.
+### 💳 4. Billing, Copays & Insurance
+* **Phased Estimates:** Structured treatment planning (Sanitation, Restoration, Aesthetics).
+* **Clearinghouse & Reconciliation:** Automated insurance coverage settlements, copay calculation, and audit exports to **CSV**.
 
-### 🤖 5. Copiloto Clínico y Cumplimiento Normativo (HIPAA)
-* **IA Contextual:** Asistente conversacional para doctores (resolución de contraindicaciones) y generador de pautas postoperatorias amigables para el paciente.
-* **Data Masking (Privacidad):** Enmascaramiento a un clic de información sensible (DNI, teléfonos, pólizas) para protección visual en consultorios o telemedicina.
+### 🤖 5. Clinical Copilot & Regulatory Compliance (HIPAA)
+* **Contextual AI:** Conversational assistant for clinicians (contraindication checks) and generator of patient-friendly post-op instructions.
+* **Data Masking (Privacy):** One-click masking of sensitive personal data (national ID, phone numbers, policy numbers) for visual protection in examination rooms or telemedicine.
 
 ---
 
-## 💻 Guía de Despliegue y Auditoría (Entorno Local)
+## 💻 Deployment & Audit Guide (Local Environment)
 
-Para ingenieros clínicos, auditores de QA o desarrolladores autorizados que requieran levantar el entorno de la interfaz en modo *Sandbox*:
+For clinical engineers, QA auditors, or authorized developers setting up the interface environment in *Sandbox* mode:
 
-### 1. Preparación del Entorno (Node.js v20+)
+### 1. Environment Preparation (Node.js v20+)
 ```bash
-git clone [https://github.com/tu-usuario/tresval-healthtech.git](https://github.com/tu-usuario/tresval-healthtech.git)
+git clone https://github.com/tu-usuario/tresval-healthtech.git
 cd tresval-healthtech
 npm install
 ```
-### 2. Configuración de Credenciales
-Para habilitar el motor de inferencia (Copiloto e IA de Triaje), configure las variables de entorno. (Nota: El sistema incluye un motor heurístico de contingencia si no se provee API Key).
 
-```Bash
+### 2. Credential Configuration
+To enable the inference engine (Copilot and Triage AI), configure the environment variables. (Note: The system includes a fallback heuristic engine if no API Key is provided).
+
+```bash
 cp .env.example .env
-Edite .env
+# Edit .env with your credentials
 ```
-### 3. Servidor de Desarrollo Local
-```Bash
+
+### 3. Local Development Server
+```bash
 npm run dev
-El entorno de auditoría estará disponible en http://localhost:3000.
 ```
+The audit environment will be available at `http://localhost:3000`.
 
-### ⚙️ 4. Herramientas de Integración y Despliegue (CI/CD)
+### ⚙️ 4. Integration & Deployment Tools (CI/CD)
 
-| Comando | Descripción de la Operación Pipeline |
+| Command | Pipeline Operation Description |
 | :--- | :--- |
-| `npm run dev` | Inicia el entorno dual (Cliente Vite + Servidor Express) con Hot-Reloading. |
-| `npm run build` | Compila el frontend estático y empaqueta el backend optimizado en `dist/server.cjs`. |
-| `npm start` | Inicia el servidor de producción renderizando los artefactos generados. |
-| `npm run lint` | Ejecuta verificación estricta de tipos (`tsc --noEmit`) para control de calidad clínico. |
+| `npm run dev` | Starts dual environment (Vite client + Express server) with hot reloading. |
+| `npm run build` | Compiles static frontend and bundles optimized backend to `dist/server.cjs`. |
+| `npm start` | Starts the production server serving the generated production artifacts. |
+| `npm run lint` | Runs strict type verification (`tsc --noEmit`) for clinical quality assurance. |
 
 ---
-*Propiedad de Arquitectura de Software - Jastin Bolaños © 2026. Proyecto de Demostración Técnica.*
+*Software Architecture Property - Jastin Bolaños © 2026. Technical Demonstration Project.*
